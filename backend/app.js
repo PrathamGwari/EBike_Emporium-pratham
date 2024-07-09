@@ -53,18 +53,18 @@ if (isProduction) {
     app.get('/', (req, res) => {
       res.cookie('CSRF-Token', req.csrfToken());
       res.sendFile(
-        path.resolve(__dirname, '../frontend', 'build', 'index.html')
+        path.resolve(__dirname, 'build', 'index.html')
       );
     });
 
     // Serve the static assets in the frontend's build folder
-    app.use(express.static(path.resolve("../frontend/build")));
+    app.use(express.static(path.resolve("build")));
 
     // Serve the frontend's index.html file at all other routes NOT starting with /api
     app.get(/^(?!\/?api).*/, (req, res) => {
       res.cookie('CSRF-Token', req.csrfToken());
       res.sendFile(
-        path.resolve(__dirname, '../frontend', 'build', 'index.html')
+        path.resolve(__dirname, 'build', 'index.html')
       );
     });
 }
